@@ -1,0 +1,89 @@
+/* Header.css */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: white; /* Set the background color of the header to white */
+  border-bottom: 1px solid #ddd; /* Add a thin visible line after the header */
+}
+
+.logo img {
+  width: 100px; /* Adjust the width of the logo image as needed */
+}
+
+.navigation ul {
+  list-style: none;
+  display: flex;
+  padding: 0;
+}
+
+.navigation li {
+  position: relative;
+  margin-right: 1rem;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: #333;
+  padding: 0.5rem 1rem;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #f0f0f0;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.navigation li:hover .dropdown {
+  display: block;
+}
+
+.dropdown a {
+  color: #333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {
+  background-color: #ddd;
+}
+
+.buttons {
+  display: flex; /* Add this line to make the buttons align horizontally */
+  align-items: center; /* Add this line to vertically align buttons */
+}
+
+.buttons button {
+  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.buttons button:first-child {
+  margin-left: 0;
+}
+
+/* Styles for Button 1 and Button 2 */
+.buttons button:nth-child(1),
+.buttons button:nth-child(2) {
+  background-color: #007bff;
+}
+
+/* Styles for Button 3 */
+.buttons button:nth-child(3) {
+  background-color: red;
+  border: 2px solid white;
+}
