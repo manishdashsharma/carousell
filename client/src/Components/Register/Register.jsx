@@ -52,6 +52,7 @@ const Register = ({ onClose }) => {
     } catch (error) {
       setProgressLoaderOpen(false);
       console.error("API error:", error);
+      console.error("Ok", error);
     }
   };
 
