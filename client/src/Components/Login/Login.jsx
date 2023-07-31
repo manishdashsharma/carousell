@@ -6,7 +6,7 @@ import GlobalLoader from "../GlobalLoader/GlobalLoader";
 
 const Login = ({ onClose }) => {
   const [showEmailForm, setShowEmailForm] = useState(false);
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorSnackbarOpen, setErrorSnackbarOpen] = useState(false);
@@ -25,7 +25,7 @@ const Login = ({ onClose }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username,
+          email,
           password,
         }),
       });
@@ -107,8 +107,8 @@ const Login = ({ onClose }) => {
             label="Username"
             variant="outlined"
             type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             fullWidth
             style={{ marginBottom: "10px" }}
           />

@@ -1,16 +1,24 @@
 import React, { useState } from "react";
-import { Button, Typography, TextField, MenuItem, Snackbar, LinearProgress } from "@mui/material";
+import {
+  Button,
+  Typography,
+  TextField,
+  MenuItem,
+  Snackbar,
+  LinearProgress,
+} from "@mui/material";
 import { Email, Facebook } from "@mui/icons-material";
 import { SIGNUP_URL } from "../../api";
 import GlobalLoader from "../GlobalLoader/GlobalLoader";
 
 const Register = ({ onClose }) => {
   const [showEmailForm, setShowEmailForm] = useState(false);
-  const [country, setCountry] = useState("EGYPT");
+  const [city, setCity] = useState("EGYPT");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [loading, setLoading] = useState(false);
+  const [name, setName] = useState("");
   const [errorSnackbarOpen, setErrorSnackbarOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [progressLoaderOpen, setProgressLoaderOpen] = useState(false);
@@ -33,6 +41,7 @@ const Register = ({ onClose }) => {
           email,
           password,
           phoneNumber,
+          name,
         }),
       });
 
@@ -52,6 +61,7 @@ const Register = ({ onClose }) => {
     } catch (error) {
       setProgressLoaderOpen(false);
       console.error("API error:", error);
+      console.error("Ok", error);
     }
   };
 
@@ -124,9 +134,9 @@ const Register = ({ onClose }) => {
         <form onSubmit={handleSubmit}>
           <TextField
             select
-            label="Country"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
+            label="City"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
             variant="outlined"
             fullWidth
             style={{ marginBottom: "10px" }}
@@ -134,6 +144,15 @@ const Register = ({ onClose }) => {
             <MenuItem value="EGYPT">Egypt</MenuItem>
             {/* Add more countries as needed */}
           </TextField>
+          <TextField
+            label="name"
+            variant="outlined"
+            type="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            fullWidth
+            style={{ marginBottom: "10px" }}
+          />
           <TextField
             label="Email"
             variant="outlined"
@@ -181,7 +200,9 @@ const Register = ({ onClose }) => {
       )}
 
       {/* Linear Progress Loader */}
-      {progressLoaderOpen && <LinearProgress color="primary" style={{ marginBottom: "10px" }} />}
+      {progressLoaderOpen && (
+        <LinearProgress color="primary" style={{ marginBottom: "10px" }} />
+      )}
 
       {loading && <GlobalLoader />}
 
