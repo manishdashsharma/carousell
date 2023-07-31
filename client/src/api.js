@@ -1,7 +1,5 @@
-// api.js
-
 // Define your base URL here
-const BASE_URL = "https://happy-jumper-bass.cyclic.app/api/v1";
+const BASE_URL = "https://grumpy-fedora-calf.cyclic.cloud/api/v1";
 
 const AUTH_ENDPOINT = "/auth";
 const SIGNUP_ENDPOINT = "/signup";
