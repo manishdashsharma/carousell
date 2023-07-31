@@ -6,7 +6,7 @@ import GlobalLoader from "../GlobalLoader/GlobalLoader";
 
 const Register = ({ onClose }) => {
   const [showEmailForm, setShowEmailForm] = useState(false);
-  const [country, setCountry] = useState("EGYPT");
+  const [city, setCity] = useState("EGYPT");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -125,9 +125,9 @@ const Register = ({ onClose }) => {
         <form onSubmit={handleSubmit}>
           <TextField
             select
-            label="Country"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
+            label="City"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
             variant="outlined"
             fullWidth
             style={{ marginBottom: "10px" }}
