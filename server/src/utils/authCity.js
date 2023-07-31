@@ -4,7 +4,8 @@ const AuthCities = {
     MALAYSIA : "MALAYSIA",
     PHILIPPINS : "PHILIPPINS",
     SINGAPORE : "SINGAPORE",
-    TAWIWAN : "TAWIWAN"
+    TAWIWAN : "TAWIWAN",
+    EGYPT: "EGYPT",
 }
 
 export default AuthCities;
