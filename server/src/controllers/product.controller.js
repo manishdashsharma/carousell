@@ -1,4 +1,4 @@
-import CarCategory from "../models/car.category.schema.js";
+import Product from "../models/product.schema.js";
 import asyncHandler from "../services/asyncHandler.js";
 import CustomError from "../services/CustomError.js";
 import formidable from 'formidable';
@@ -6,7 +6,8 @@ import cloudinary from "../config/cloudinary.config.js";
 import config from './../config/index.js';
 import mongoose from "mongoose";
 
-export const addCarCategory = asyncHandler((req, res) => {
+
+export const addProduct = asyncHandler((req, res) => {
     const form = formidable({ multiples: true, keepExtensions: true });
   
     form.parse(req, async function (error, fields, files) {
@@ -19,6 +20,7 @@ export const addCarCategory = asyncHandler((req, res) => {
       if (
         !fields.name[0] ||
         !fields.price[0] ||
+        !fields.condition[0] ||
         !fields.description[0] ||
         !fields.categoryId[0] ||
         !fields.subcategoryId[0] ||
@@ -29,6 +31,7 @@ export const addCarCategory = asyncHandler((req, res) => {
 
       const name= fields.name[0] 
       const price= fields.price[0] 
+      const condition= fields.condition[0] 
       const description= fields.description[0]
       const categoryId  = fields.categoryId[0] 
       const subcategoryId=  fields.subcategoryId[0]
@@ -48,10 +51,11 @@ export const addCarCategory = asyncHandler((req, res) => {
         });
       }
     
-      const car = await CarCategory.create({
+      const product = await Product.create({
         _id: carCategoryId,
         photos: imageUpload,
         name ,
+        condition,
         price ,
         description ,
         categoryId,
@@ -59,58 +63,41 @@ export const addCarCategory = asyncHandler((req, res) => {
         other
       });
   
-      if (!car) {
-        throw new CustomError('Failed to add car', 400);
+      if (!product) {
+        throw new CustomError('Failed to add product', 400);
       }
   
       res.status(200).json({
         success: true,
-        car
+        product
       });
     });
 });
 
-export const getCarCategoryId = asyncHandler(async (req, res) => {
-    const {id: carCategory} = req.params
-  
-    const car = await CarCategory.findById(carCategory)
-  
-    if (!car) {
-        throw new CustomError("No car found", 404)
-    }
-  
-    res.status(200).json({
-        success: true,
-        car
-    })
-});
+export const getProductById = asyncHandler(async (req, res) => {
+  const {id: productId} = req.params
 
-export const getCarCategory = asyncHandler(async(req, res) => {
-    const car = await CarCategory.find()
-  
-    if(!car) {
-      throw new CustomError("No car found", 404)
-    }
-  
-    res.status(200).json({
+  const product = await Product.findById(productId)
+
+  if (!product) {
+      throw new CustomError("No product found", 404)
+  }
+
+  res.status(200).json({
       success: true,
-      car
-    })
+      product
+  })
 });
 
-export const addFavorite = asyncHandler( async( req, res) => {
-    const { id: carCategoryId } = req.params
-  
-    const car = await CarCategory.findById(carCategoryId)
-    
-    if(!car){
-      throw new CustomError("Car not found",404)
-    }
-  
-    car.favorites = !car.favorites
-    await car.save()
-  
-    res.status(200).json({
-      car
-    })
-})
+export const getProduct = asyncHandler(async(req, res) => {
+  const product = await Product.find()
+
+  if(!product) {
+    throw new CustomError("No product found", 404)
+  }
+
+  res.status(200).json({
+    success: true,
+    product
+  })
+});
