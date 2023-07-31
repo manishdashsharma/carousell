@@ -29,7 +29,7 @@ const Register = ({ onClose }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          country,
+          city,
           email,
           password,
           phoneNumber,
